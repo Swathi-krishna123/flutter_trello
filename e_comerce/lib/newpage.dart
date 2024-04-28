@@ -5,14 +5,7 @@ class Swathi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> images = [
-      "e_comerce/assets/img1.jpg",
-      "e_comerce/assets/img2.jpeg",
-      "e_comerce/assets/img3.jpeg",
-      "e_comerce/assets/img4.jpeg"
-    ];
-
-    double width = MediaQuery.of(context).size.width * 0.8;
+    double width = MediaQuery.of(context).size.width * 0.6;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -88,8 +81,49 @@ class Swathi extends StatelessWidget {
           ),
         ),
       ),
-     
-      
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Container(
+              height: 100,
+              width: 169,
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  image: AssetImage("e_comerce/assets/copy.jpg"),
+                ),
+              ),
+            ),
+            Container(
+              height: 100,
+              width: 169,
+              color: Colors.red,
+            ),
+          ]),
+          const SizedBox(height: 10,),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Container(
+              height: 100,
+              width: 169,
+              decoration:  const BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  image: AssetImage("assets/copy.jpg"),
+                  fit: BoxFit.cover
+                ),
+              ),
+            ),
+            Container(
+              height: 100,
+              width: 169,
+              color: Colors.red,
+            ),
+          ]),
+        ],
+      ),
     );
   }
 }
