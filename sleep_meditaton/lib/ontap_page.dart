@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_meditaton/music.dart';
 
 class Newpage extends StatefulWidget {
   const Newpage({super.key});
@@ -108,7 +109,13 @@ class _NewpageState extends State<Newpage> {
                             color: const Color.fromARGB(255, 63, 68, 70)),
                         child: Center(
                             child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) {
+                                      return Music();
+                                    },
+                                  ));
+                                },
                                 icon: const Icon(
                                   Icons.headphones,
                                   color: Colors.white,

@@ -9,9 +9,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  List<String> items = ["Insomnia", "Depression", "baby sleep", "others"];
+  List<IconData> icons = [Icons.home, Icons.explore, Icons.search, Icons.feed];
   int selectedindex = 0;
-  
-
+  int setindex=0;
 
   @override
   Widget build(context) {
@@ -20,7 +21,7 @@ class _HomepageState extends State<Homepage> {
           backgroundColor: Colors.blueGrey.shade700,
           onTap: (int index) {
             setState(() {
-              selectedindex = index;
+              setindex = index;
             });
           },
           type: BottomNavigationBarType.fixed,
@@ -44,7 +45,7 @@ class _HomepageState extends State<Homepage> {
                   Icons.person,
                 ))
           ],
-          currentIndex: selectedindex,
+          currentIndex: setindex,
           selectedItemColor: Colors.blue),
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -98,24 +99,63 @@ class _HomepageState extends State<Homepage> {
             const SizedBox(
               height: 30,
             ),
-             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 25,
-                  ),
-                  buildcontainer("Insomnia",isselected: true),
-                  const SizedBox(width: 10),
-                  buildcontainer("Depression"),
-                  const SizedBox(width: 10),
-                  buildcontainer("Baby Sleep"),
-                  const SizedBox(width: 10),
-                  buildcontainer("others", )
-                  
-                ],
-              ),
+            const SizedBox(
+              width: 25,
             ),
+            // buildcontainer("Insomnia",isselected: true),
+            // const SizedBox(width: 10),
+            // buildcontainer("Depression"),
+            // const SizedBox(width: 10),
+            // buildcontainer("Baby Sleep"),
+            // const SizedBox(width: 10),
+            // buildcontainer("others", )
+
+            SizedBox(
+                height: 70,
+                width: double.infinity,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                selectedindex = index;
+                              });
+                            },
+                            child: Container(
+                              height: 45,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                boxShadow: const [
+                                  BoxShadow(
+                                      spreadRadius: 1,
+                                      blurRadius: 5,
+                                      offset: Offset(0, -1))
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                color: selectedindex == index
+                                    ? Colors.blue
+                                    : Colors.white24,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  items[index],
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                )),
+                SizedBox(height: 60,child:Center(child:Icon(icons[selectedindex],color: Colors.white,)) ,),
             Row(
               children: [
                 const SizedBox(
@@ -306,7 +346,8 @@ buidnewcontainer(String text1, String text2, IconData icon1, IconData icon2,
     padding: const EdgeInsets.all(8.0),
     child: GestureDetector(
       onTap: onTap,
-      child: Container(clipBehavior: Clip.hardEdge,
+      child: Container(
+        clipBehavior: Clip.hardEdge,
         height: 200,
         width: 300,
         decoration: BoxDecoration(
@@ -352,18 +393,18 @@ buidnewcontainer(String text1, String text2, IconData icon1, IconData icon2,
   );
 }
 
-Container buildcontainer(String text,{bool isselected=false}) {
+// Container buildcontainer(String text,{bool isselected=false}) {
 
-  return Container(
-    decoration: BoxDecoration(boxShadow: [BoxShadow(spreadRadius: 1,blurRadius:5 ,offset: Offset(0, -1))],
-        borderRadius: BorderRadius.circular(10),color: isselected?Colors.blue:Colors.white24,), 
-    child: TextButton(
-      onPressed:(){},
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white),
-      ),
-    ),
-  );
-}
+//   return Container(
+//     decoration: BoxDecoration(boxShadow: [BoxShadow(spreadRadius: 1,blurRadius:5 ,offset: Offset(0, -1))],
+//         borderRadius: BorderRadius.circular(10),color: isselected?Colors.blue:Colors.white24,), 
+//     child: TextButton(
+//       onPressed:(){},
+//       child: Text(
+//         text,
+//         style: const TextStyle(color: Colors.white),
+//       ),
+//     ),
+//   );
+// }
 
